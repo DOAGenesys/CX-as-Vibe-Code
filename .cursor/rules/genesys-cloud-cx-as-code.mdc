@@ -1,0 +1,25 @@
+---
+description: Genesys Cloud CX as Code safety and portable Vibe Code skill discovery
+globs:
+  - "infra/**/*.tf"
+  - "infra/**/*.yaml"
+  - "infra/**/*.yml"
+  - "skills/vibe-code/**"
+alwaysApply: true
+---
+
+Use the portable Vibe Code skill at `skills/vibe-code/SKILL.md` for Genesys Cloud CX as Code tasks.
+
+Treat Terraform with provider source `mypurecloud/genesyscloud` as the desired-state authority for supported Genesys Cloud resources.
+
+Discover current `genesyscloud_*` resources, data sources, arguments, permissions, and scopes from the installed provider schema and current provider docs before adding provider-specific HCL. Do not invent provider resources or arguments from memory.
+
+Keep Architect flows as YAML and manage them through `genesyscloud_flow`.
+
+Do not hardcode OAuth credentials, backend credentials, tokens, org GUIDs, queue IDs, or division IDs.
+
+Do not read, print, summarize, edit, or ask the user to paste `.env.local` or any other local secret file. Check only whether required environment variable names are present in the current process.
+
+Do not add or edit `.github/workflows/` unless the user explicitly asks for GitHub Actions.
+
+Stop and call out risk before Terraform apply, flow rename, `force_unlock`, destructive replacement, or direct SDK, CLI, or REST mutation.

@@ -1,0 +1,26 @@
+# Local environment and secret files
+.env
+.env.*
+!.env.example
+
+# Terraform local state, plans, and working directories
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfplan
+tfplan
+crash.log
+crash.*.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Local exports and logs that may contain org-specific data
+exported/
+architect_flows/
+*.log
+
+# OS and editor noise
+.DS_Store
+Thumbs.db
