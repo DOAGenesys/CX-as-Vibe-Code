@@ -59,7 +59,7 @@ Install or provide:
 - A configured remote Terraform backend when working with shared environments.
 - Optional: Genesys Cloud SDK, CLI, or Archy when the specific task needs smoke tests, diagnostics, or Architect flow tooling.
 
-Do not commit credentials to this repository. Real local values belong in `.env.local`, which is ignored by Git. Agents must never read, print, summarize, or edit `.env.local`; they should only rely on environment variables already loaded into the shell or CI runner.
+Do not commit credentials to this repository. Real local values belong in `.env.local`, which is ignored by Git. Agents must never open, print, summarize, or edit `.env.local`. When a Terraform command needs local credentials, use the audited helper script at `skills/vibe-code/scripts/terraform-local-env.ps1`; it loads allowed variables internally without printing values.
 
 Create your local file from the safe template:
 
@@ -77,7 +77,7 @@ GENESYSCLOUD_OAUTHCLIENT_SECRET=your-client-secret
 GENESYSCLOUD_REGION=us-east-1
 ```
 
-Load those values into your shell before running Terraform. Prefer an OS-level environment variable, terminal profile, password manager, CI/CD secret injection, or another secret-store-backed loader. If you use PowerShell manually, run this yourself outside agent control and load values without printing them:
+For your own manual terminal work, prefer an OS-level environment variable, terminal profile, password manager, CI/CD secret injection, or another secret-store-backed loader. If you use PowerShell manually, run this yourself outside agent control and load values without printing them:
 
 ```powershell
 Get-Content .env.local | ForEach-Object {
@@ -87,7 +87,7 @@ Get-Content .env.local | ForEach-Object {
 }
 ```
 
-Only the variable names should appear in prompts, logs, or docs. Do not ask the agent to inspect, source, parse, or print `.env.local`; ask it to check whether required environment variable names are present in the current process.
+Only the variable names should appear in prompts, logs, or docs. Do not ask the agent to inspect, source, parse, or print `.env.local` with ad hoc commands. Ask it to use `terraform-local-env.ps1` when Terraform needs local credentials.
 
 For Terraform with the Genesys Cloud provider, the usual environment variables are:
 
@@ -115,6 +115,25 @@ When credentials and backend access are ready, allow a plan:
 
 ```powershell
 .\skills\vibe-code\scripts\terraform-review.ps1 -TerraformDir "infra/environments/dev"
+```
+
+If credentials are only in `.env.local`, use the safe local-env runner instead:
+
+```powershell
+.\skills\vibe-code\scripts\terraform-local-env.ps1 `
+  -TerraformDir "infra/environments/dev" `
+  -TerraformCommand plan `
+  -TerraformArgs @("-out=tfplan")
+```
+
+Apply only a reviewed plan, after explicit approval:
+
+```powershell
+.\skills\vibe-code\scripts\terraform-local-env.ps1 `
+  -TerraformDir "infra/environments/dev" `
+  -TerraformCommand apply `
+  -TerraformArgs @("tfplan") `
+  -AllowApply
 ```
 
 For drift checks:
@@ -171,6 +190,7 @@ skills/vibe-code/
 └── scripts/
     ├── README.md
     ├── terraform-review.ps1
+    ├── terraform-local-env.ps1
     ├── provider-discovery.ps1
     └── drift-check.ps1
 ```

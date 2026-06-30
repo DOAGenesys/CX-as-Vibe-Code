@@ -10,4 +10,4 @@ The Claude Code wrapper at `.claude/skills/vibe-code/SKILL.md` exists only to he
 
 Do not apply Terraform, mutate Genesys Cloud, or introduce CI/CD automation without explicit user approval and a clear target platform.
 
-Never read, print, summarize, edit, or ask the user to paste `.env.local` or any other local secret file. Use only environment variable names and presence checks.
+Never read, print, summarize, edit, or ask the user to paste `.env.local` or any other local secret file. Use only environment variable names, presence checks, or the audited `skills/vibe-code/scripts/terraform-local-env.ps1` runner when Terraform needs local credentials.

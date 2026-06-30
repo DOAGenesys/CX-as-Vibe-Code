@@ -3,8 +3,20 @@
 .env.*
 !.env.example
 
-# Terraform local state, plans, and working directories
+# Terraform/OpenTofu configuration, local state, plans, and working directories
 .terraform/
+.terraform.lock.hcl
+.terraformrc
+.tofu/
+.terraform.d/
+*.tf
+!infra/**/*.tf
+*.tf.json
+*.tfvars
+*.tfvars.json
+*.hcl
+*.tofu
+*.tofu.json
 *.tfstate
 *.tfstate.*
 *.tfplan

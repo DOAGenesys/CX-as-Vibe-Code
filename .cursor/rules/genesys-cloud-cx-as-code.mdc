@@ -18,7 +18,7 @@ Keep Architect flows as YAML and manage them through `genesyscloud_flow`.
 
 Do not hardcode OAuth credentials, backend credentials, tokens, org GUIDs, queue IDs, or division IDs.
 
-Do not read, print, summarize, edit, or ask the user to paste `.env.local` or any other local secret file. Check only whether required environment variable names are present in the current process.
+Do not read, print, summarize, edit, or ask the user to paste `.env.local` or any other local secret file. Check only whether required environment variable names are present in the current process, or use the audited `skills/vibe-code/scripts/terraform-local-env.ps1` runner when Terraform needs local credentials.
 
 Do not add or edit `.github/workflows/` unless the user explicitly asks for GitHub Actions.
 

@@ -17,7 +17,7 @@ This skill is intentionally agent agnostic. Cursor, Claude Code, Codex, and othe
 - Keep Architect flows as YAML artifacts and manage their lifecycle through `genesyscloud_flow`.
 - Use official SDKs, CLI, or REST calls for inspection, diagnostics, smoke tests, and unsupported edge cases, not as the default mutation path.
 - Keep all OAuth credentials, backend credentials, API tokens, org IDs, and secrets out of committed files.
-- Treat `.env.local` and other `.env*` secret files as user-managed and off-limits. Do not read, print, summarize, edit, or ask the user to paste them.
+- Treat `.env.local` and other `.env*` secret files as user-managed and off-limits. Do not read, print, summarize, edit, or ask the user to paste them. Use only `scripts/terraform-local-env.ps1` when Terraform needs local credentials loaded at runtime.
 - Use remote state with locking and serialize applies per workspace or backend.
 - Require human review before production applies and before flow rename, force unlock, or destructive replacement risks.
 - Do not add or edit `.github/workflows/` unless the user explicitly asks for GitHub Actions. Ask which CI/CD platform the project uses when automation is needed.
@@ -56,7 +56,7 @@ Stop and ask the user before:
 - Renaming Architect flows or enabling `force_unlock`.
 - Introducing preview APIs or direct API mutations for production behavior.
 - Storing any value that might be secret or state-sensitive in Terraform, docs, scripts, or logs.
-- Inspecting `.env.local` or any other local secret file. Check only whether required environment variable names are present in the current process.
+- Inspecting `.env.local` or any other local secret file with read tools or ad hoc shell commands. Check only variable-name presence, or use `scripts/terraform-local-env.ps1` for approved Terraform commands that need local credentials.
 
 ## Reference Files
 

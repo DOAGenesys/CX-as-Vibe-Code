@@ -11,7 +11,7 @@
 
 - Configure authentication through environment variables or the runtime secret store.
 - Do not hardcode OAuth client IDs, OAuth client secrets, backend credentials, access tokens, queue IDs, org GUIDs, or division IDs.
-- Do not read, print, summarize, edit, or ask the user to paste `.env.local` or any other local secret file.
+- Do not read, print, summarize, edit, or ask the user to paste `.env.local` or any other local secret file. Use only `scripts/terraform-local-env.ps1` when Terraform needs local credentials loaded from `.env.local`.
 - Pin the provider version in Terraform and review current provider docs before adding newer resources.
 - Treat the installed provider schema and live Registry docs as authoritative. Do not rely on this cheatsheet as a complete resource catalog.
 - Use provider resource docs to derive required OAuth scopes and Genesys Cloud permissions.

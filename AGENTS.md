@@ -21,12 +21,12 @@ This is the canonical source for Terraform, Architect flow YAML, brownfield expo
 - Discover current `genesyscloud_*` resources, data sources, arguments, permissions, and scopes from the installed provider schema and current provider docs before adding provider-specific HCL.
 - Run or recommend Terraform formatting, validation, plan, and focused smoke tests for relevant changes.
 - Keep the smallest reviewable diff.
-- Treat `.env.local` and any `.env*` secret file as user-managed and off-limits; use only environment variable names and presence checks.
+- Treat `.env.local` and any `.env*` secret file as user-managed and off-limits. Use only environment variable names, presence checks, or the audited `skills/vibe-code/scripts/terraform-local-env.ps1` runner.
 
 ## Never Do
 
 - Never hardcode OAuth client IDs, OAuth client secrets, tokens, backend credentials, org GUIDs, queue IDs, or division IDs.
-- Never read, print, summarize, edit, or ask the user to paste `.env.local` or any other local secret file.
+- Never read, print, summarize, edit, or ask the user to paste `.env.local` or any other local secret file. Do not use ad hoc shell commands to parse it; use only the audited local-env runner when Terraform needs it.
 - Never commit Terraform state, plan files, exported secrets, or credential material.
 - Never mutate Genesys Cloud directly through SDK, CLI, or REST unless the user explicitly approves a documented exception.
 - Never invent `genesyscloud_*` resources, arguments, or data sources from memory or from old examples.

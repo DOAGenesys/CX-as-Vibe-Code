@@ -18,4 +18,4 @@ Before acting, read and follow the canonical skill at:
 
 Use the reference files and scripts from `skills/vibe-code/`. Do not treat this wrapper as a separate source of policy.
 
-Never read, print, summarize, edit, or ask the user to paste `.env.local` or any other local secret file.
+Never read, print, summarize, edit, or ask the user to paste `.env.local` or any other local secret file. Use only the audited `skills/vibe-code/scripts/terraform-local-env.ps1` runner when Terraform needs local credentials.
