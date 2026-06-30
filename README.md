@@ -18,17 +18,6 @@ npx skills add https://github.com/DOAGenesys/CX-as-Vibe-Code --skill vibe-code
 
 The skill name is `vibe-code`, defined in `skills/vibe-code/SKILL.md`.
 
-## Publishing Checklist
-
-To make this skill easy for agent ecosystems and directories such as [skills.sh](https://www.skills.sh/) to discover:
-
-- Keep the repository public.
-- Keep the canonical skill at `skills/vibe-code/SKILL.md`.
-- Keep the skill frontmatter `name` and `description` accurate.
-- Keep this README's install command current.
-- Add repository topics such as `agent-skills`, `genesys-cloud`, `terraform`, `cx-as-code`, and `coding-agents`.
-- Use releases or tags when publishing stable versions.
-
 ## Start Using The Skill
 
 1. Open this repository with your coding agent.
