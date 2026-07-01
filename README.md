@@ -1,6 +1,6 @@
 # CX as Vibe Code
 
-This repository contains an agent-agnostic Vibe Code skill pack for Genesys Cloud CX as Code.
+This repository contains an agent-agnostic Vibe Code skill pack for Genesys Cloud CX as Code, including Terraform, Architect flow YAML, and Genesys Cloud Functions guidance.
 
 ## Install With Skills CLI
 
@@ -36,7 +36,9 @@ Do not apply Terraform or mutate Genesys Cloud unless I explicitly approve it.
 - Codex-style agents: `AGENTS.md` and `.codex/skills/vibe-code/SKILL.md`
 - Other agents: `AGENTS.md` and `skills/vibe-code/SKILL.md`
 
-4. Before asking the agent to run Terraform plans or smoke checks, make sure the local shell or CI runner has the required tools and credentials.
+4. For Genesys Cloud Functions or backend custom Node.js code, ask the agent to use the Functions guidance in `skills/vibe-code/functions.md`.
+
+5. Before asking the agent to run Terraform plans or smoke checks, make sure the local shell or CI runner has the required tools and credentials.
 
 ## Required Local Setup
 
@@ -133,6 +135,21 @@ For drift checks:
 
 These helper scripts do not apply Terraform. The agent should stop and ask before any command that mutates a live Genesys Cloud org.
 
+## Genesys Cloud Functions
+
+The skill includes a dedicated Functions block at `skills/vibe-code/functions.md`. Agents must use it for Genesys Cloud Functions, Function Data Actions, simulated external web services, or backend custom Node.js code intended to run in Genesys Cloud.
+
+The Functions guidance covers:
+
+- Requirement gathering one question at a time: function name, flat inputs, output structure, and simulated logic.
+- Vanilla Node.js generation for Node `>=22`, CommonJS, `crypto.randomUUID()`, structured `console.log` records, and no dependencies unless requested.
+- Input and output JSONSchema contract rules, including flat input contracts and complete property descriptions.
+- CRUD guidance for Function Data Actions while preserving Terraform-first desired state when the provider supports the resource.
+- The required 15 second Genesys Cloud Functions timeout and short-lived serverless coding constraints.
+- Deployment instructions for `package.json`, `src/index.js`, contracts, handler `src/index.handler`, runtime `nodejs22.x`, upload package, and JSON mode contract testing.
+
+Agents should stop and ask before uploading, publishing, replacing, or deleting a Function or Function Data Action.
+
 ## Provider Evolution
 
 The Genesys Cloud Terraform provider changes over time. This skill is designed to stay useful by making agents discover provider facts dynamically instead of relying on a static resource list in the skill.
@@ -171,6 +188,7 @@ The shared skill lives here:
 ```text
 skills/vibe-code/
 ├── SKILL.md
+├── functions.md
 ├── provider-cheatsheet.md
 ├── provider-evolution.md
 ├── brownfield-onboarding.md
@@ -201,6 +219,7 @@ The wrapper files exist only for discovery. The actual workflow, references, and
 
 - Terraform with `mypurecloud/genesyscloud` is the source of truth for supported Genesys Cloud resources.
 - Architect flows stay as YAML and are managed through `genesyscloud_flow`.
+- Genesys Cloud Functions use `skills/vibe-code/functions.md`, including Function Data Action CRUD guidance and a 15 second timeout.
 - SDK, CLI, and REST usage is for verification, diagnostics, and documented exceptions.
 - Secrets and state-sensitive values must never be committed.
 - Production applies require human approval and serialized Terraform state access.

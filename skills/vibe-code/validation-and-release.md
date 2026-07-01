@@ -28,7 +28,7 @@ Post-apply smoke tests should verify behavior-critical objects through official 
 
 - Routing changes: queue existence, queue name, member or skill expectations when in scope.
 - Flow changes: flow name, type, published status, and key dependencies.
-- Integration or Data Action changes: action existence, status, and expected response shape.
+- Integration, Data Action, or Function changes: action existence, status, 15 second timeout setting, expected response shape, missing-required-field behavior, and execution logs.
 - Authorization changes: role and division assignments for the specific principal in scope.
 
 ## Drift Detection

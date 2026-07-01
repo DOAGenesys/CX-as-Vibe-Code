@@ -8,7 +8,7 @@ globs:
 alwaysApply: true
 ---
 
-Use the portable Vibe Code skill at `skills/vibe-code/SKILL.md` for Genesys Cloud CX as Code tasks.
+Use the portable Vibe Code skill at `skills/vibe-code/SKILL.md` for Genesys Cloud CX as Code tasks, including Genesys Cloud Functions and backend custom Node.js code intended for Genesys Cloud.
 
 Treat Terraform with provider source `mypurecloud/genesyscloud` as the desired-state authority for supported Genesys Cloud resources.
 
@@ -16,10 +16,12 @@ Discover current `genesyscloud_*` resources, data sources, arguments, permission
 
 Keep Architect flows as YAML and manage them through `genesyscloud_flow`.
 
+Use `skills/vibe-code/functions.md` for Genesys Cloud Functions, Function Data Actions, simulated external web services, and backend custom Node.js code. Always design Functions for the 15 second timeout.
+
 Do not hardcode OAuth credentials, backend credentials, tokens, org GUIDs, queue IDs, or division IDs.
 
 Do not read, print, summarize, edit, or ask the user to paste `.env.local` or any other local secret file. Check only whether required environment variable names are present in the current process, or use the audited `skills/vibe-code/scripts/terraform-local-env.ps1` runner when Terraform needs local credentials.
 
 Do not add or edit `.github/workflows/` unless the user explicitly asks for GitHub Actions.
 
-Stop and call out risk before Terraform apply, flow rename, `force_unlock`, destructive replacement, or direct SDK, CLI, or REST mutation.
+Stop and call out risk before Terraform apply, flow rename, `force_unlock`, destructive replacement, Function upload/publish/delete, or direct SDK, CLI, or REST mutation.

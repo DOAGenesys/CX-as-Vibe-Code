@@ -6,16 +6,17 @@ Maintain Genesys Cloud CX as Code through reviewable, Terraform-first changes.
 
 ## Primary Skill
 
-Use the portable Vibe Code skill for Genesys Cloud work:
+Use the portable Vibe Code skill for Genesys Cloud work, including Genesys Cloud Functions and backend custom Node.js code intended for Genesys Cloud:
 
 `skills/vibe-code/SKILL.md`
 
-This is the canonical source for Terraform, Architect flow YAML, brownfield export, validation, smoke testing, drift detection, promotion, and rollback guidance. Agent-specific wrappers in `.cursor/skills/`, `.claude/skills/`, and `.codex/skills/` should all defer to it.
+This is the canonical source for Terraform, Architect flow YAML, Genesys Cloud Functions, Function Data Actions, brownfield export, validation, smoke testing, drift detection, promotion, and rollback guidance. Agent-specific wrappers in `.cursor/skills/`, `.claude/skills/`, and `.codex/skills/` should all defer to it.
 
 ## Always Do
 
 - Treat Terraform with provider source `mypurecloud/genesyscloud` as the source of truth for supported Genesys Cloud resources.
 - Keep Architect flows in YAML and manage lifecycle with `genesyscloud_flow`.
+- Use `skills/vibe-code/functions.md` for Genesys Cloud Functions, Function Data Actions, simulated external web services, and backend custom Node.js code intended for Genesys Cloud. Always design Functions for the 15 second timeout.
 - Use SDK, CLI, or REST checks for verification and diagnostics, not as the normal mutation path.
 - Reuse existing modules, naming patterns, and environment structure before creating new patterns.
 - Discover current `genesyscloud_*` resources, data sources, arguments, permissions, and scopes from the installed provider schema and current provider docs before adding provider-specific HCL.
@@ -29,6 +30,7 @@ This is the canonical source for Terraform, Architect flow YAML, brownfield expo
 - Never read, print, summarize, edit, or ask the user to paste `.env.local` or any other local secret file. Do not use ad hoc shell commands to parse it; use only the audited local-env runner when Terraform needs it.
 - Never commit Terraform state, plan files, exported secrets, or credential material.
 - Never mutate Genesys Cloud directly through SDK, CLI, or REST unless the user explicitly approves a documented exception.
+- Never upload, publish, replace, or delete a Genesys Cloud Function or Function Data Action without explicit user approval.
 - Never invent `genesyscloud_*` resources, arguments, or data sources from memory or from old examples.
 - Never rename Architect flows or enable `force_unlock` without calling out the replacement and publication risks.
 - Never add or edit `.github/workflows/` unless the user explicitly asks for GitHub Actions.

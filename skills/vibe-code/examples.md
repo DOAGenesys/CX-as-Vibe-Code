@@ -57,6 +57,28 @@ Check:
 Do not apply anything directly.
 ```
 
+## Genesys Cloud Function Prompt
+
+```text
+Use the Vibe Code skill and the Functions guidance.
+
+Task:
+Create a Genesys Cloud Function that simulates an external web service.
+
+Inputs:
+- Provide function name.
+- Provide flat input parameters with type and description.
+- Provide desired output structure.
+- Provide the behavior to simulate.
+
+Rules:
+- Vanilla Node.js, CommonJS, Node >=22.
+- Design for the 15 second Genesys Cloud Functions timeout.
+- Output package.json, src/index.js, input contract, and output contract as labeled fenced code blocks.
+- Include deployment instructions after the four blocks.
+- Do not upload, publish, or mutate Genesys Cloud unless explicitly approved.
+```
+
 ## Plan Review Template
 
 ```markdown

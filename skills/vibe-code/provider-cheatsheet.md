@@ -25,7 +25,7 @@ This list is illustrative and may lag the provider. Discover current coverage fr
 - Routing: queues, skills, languages, wrap-up codes, utilization, schedules.
 - Authorization and OAuth: roles, divisions, role grants, OAuth clients.
 - Architect: flows through `genesyscloud_flow` with YAML files and substitutions.
-- Integrations and Data Actions: integrations, credentials, actions, draft and publish behavior.
+- Integrations, Data Actions, and Functions: integrations, credentials, actions, Function Data Actions, draft/upload/publish behavior, and 15 second function timeout review.
 - Messaging and web: deployments, messenger config, supported channel resources.
 - AI and workforce features: verify entitlement and provider coverage before standardizing.
 

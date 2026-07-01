@@ -1,6 +1,6 @@
 ---
 name: vibe-code
-description: Loads the portable Vibe Code skill for Genesys Cloud CX as Code work. Use for Genesys Cloud Terraform, Architect flow YAML, CX as Code, brownfield onboarding, smoke testing, drift checks, rollback, or promotion tasks in Codex-style agents.
+description: Loads the portable Vibe Code skill for Genesys Cloud CX as Code work. Use for Genesys Cloud Terraform, Architect flow YAML, Functions, Function Data Actions, backend custom Node.js code, CX as Code, brownfield onboarding, smoke testing, drift checks, rollback, or promotion tasks in Codex-style agents.
 ---
 
 # Vibe Code For Codex
